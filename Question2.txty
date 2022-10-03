@@ -1,0 +1,9 @@
+#usage: bash script.sh wages.csv
+for file in wages.csv
+do 
+	cat $file | cut -d, -f 1,2,4 | sort -t, -k 4 -n | head -n 2 | echo
+	cat $file | cut -d, -f 1,2,4 | sort -t, -k 4 -n | tail -n 1 | echo
+	cat $file | cut -d, -f 1,4 | sort -n | grep "female" | head -11 | echo
+done
+
+
