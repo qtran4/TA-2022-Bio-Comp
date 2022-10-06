@@ -1,0 +1,9 @@
+#usage: bash script.sh wages.csv
+for file in wages.csv
+do
+	echo $file
+	cat $file | cut -d, -f 1,2 | sort -a -n 1,2 | uniq > GenderExp.txt
+done
+
+
+
