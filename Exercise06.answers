@@ -1,0 +1,18 @@
+#Question 1
+cat wages.csv | tr ',' ' ' | cut -d ' ' -f 1,2 | sort -u -t ' ' -k 1,1 -k2,2n  > uniquegenderexperience.txt
+
+#Question 2
+echo "highest_earner"
+cat wages.csv | tr ',' ' ' | sort -t ' ' -k 4 -n | cut -d ' ' -f 1,2,4 | tail -1 | tr ' ' ','
+
+echo "lowest_earner"
+cat wages.csv | tr ',' ' ' | sort -t ' ' -k 4 -n | cut -d ' ' -f 1,2,4 | head -2 | tail -1 | tr ' ' ','
+
+echo "Women_in_top_10"
+cat wages.csv | tr ',' ' ' | sort -t ' ' -k 4 -n | cut -d ' ' -f 1,2,4 | tail -11 | grep female | wc -l
+
+#Question 3
+val1=$(cat wages.csv | tr ',' ' ' | sort -t ' ' -k 4 -n | cut -d ' ' -f 3,4 | grep -w 16 | head -1)
+val2=$(cat wages.csv | tr ',' ' ' | sort -t ' ' -k 4 -n | cut -d ' ' -f 3,4 | grep -w 12 | head -1)
+
+echo "$val1-$val2" | bc
