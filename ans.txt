@@ -1,0 +1,15 @@
+#usage: bash script.sh wages.csv
+cat wages.csv | cut -d, -f 1-2 | sort -t, -k1,1 -k2,2n > GendersExp.txt
+
+echo "Gender, yearsExp, wage for the highest earner"
+cat wages.csv | cut -d, -f 1,2,4 | tr "," " " | sort -k 3 -n | tail -n 1
+
+cat wages.csv | cut -d, -f 1,2,4 | tr "," " " | sort -k 3 -n | head -n 2 | sed 's/wage/wage for the lowest earner/g'
+
+echo "Numbers of females in the top ten earners:"
+cat wages.csv | cut -d, -f 1,2,4 | tr "," " " | sort -k 3 -n | tail -n 10 | grep "female" | wc -l
+
+echo "Effect of graduating college on the minimum wage for earners"
+a=$(cat wages.csv | cut -d, -f 3,4 | tr "," " " | grep -n 12 | sort -t, -k 2 | head -n 1 | cut -d, -f 2)
+b=$(cat wages.csv | cut -d, -f 3,4 | tr "," " " | grep -n 16 | sort -t, -k 2 | head -n 1 | cut -d, -f 2) 
+echo "$b-$a" | bc
