@@ -1,6 +1,6 @@
 # Nate Kroeze Exercise 6 HW Script 10-07-2022
 
-# Running this script with satisfy the questions outlined in Exercise06.pdf
+# Running this script will satisfy the questions outlined in Exercise06.pdf
 
 # Usage: bash EX6-HW-NKroeze.sh
 
