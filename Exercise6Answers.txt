@@ -1,0 +1,35 @@
+echo "question 1: make newwages.txt with gender and yearsExperience"
+cat wages.csv | grep -v gender | cut -d, -f 1,2 | sort -u | tr "," " " | 
+sort -k1,1d -k2,2n > newwages.txt
+
+echo "For number 2.1, here is the gender, yearsExperience, and wage for 
+the highest earner: male 5 39.808917197"
+
+echo "to get my answer for 2.1, I used the following shell script" 
+cat wages.csv | grep -v gender | cut -d, -f 1,2,4 | tr "," " " | sort -n -k 3 
+| tail -n 1 
+
+echo "For number 2.2, here is the gender, yearsExperience, and wage for 
+the lowest earner: female 9 0.07655561"
+
+echo "to get my answer for 2.2, I used the following shell script"
+cat wages.csv | grep -v gender | cut -d, -f 1,2,4 | tr "," " " | sort -n 
+-k 3 | head -n 1
+
+echo "for number 2.3, here is the number of females in teh top ten earners 
+in this data set: 2"
+
+echo "to get my answer for 2.3, I used the following shell script"
+cat wages.csv | tr "," " " | sort -n -k 4 | tail -n 10 | grep female | wc -l
+
+echo "for number 3, the minimum wage for 12 years is 0.1028907398. The 
+minimum wage for 16 years is 4.184513117"  
+
+echo "to get my answer for 3, I used the following shell script"
+minHS=$(cat wages.csv | cut -d, -f 3,4 | grep 12, | cut -d, -f 2 | sort -n 
+| head -1)
+minBS=$(cat wages.csv | cut -d, -f 3,4 | grep 16, | cut -d, -f 2 | sort -n 
+| head -1) 
+
+echo "$minBS-$minHS" | bc
+
